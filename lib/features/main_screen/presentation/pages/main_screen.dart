@@ -1,3 +1,4 @@
+import 'package:assignment9/core/analytics_engine.dart';
 import 'package:assignment9/core/language_model/language_constants.dart';
 import 'package:assignment9/core/routes/app_router.gr.dart';
 import 'package:assignment9/core/theme/app_pallete.dart';
@@ -8,6 +9,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 @RoutePage()
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
+
+  static const List<String> pageNames = [
+    "Home",
+    "Authors",
+    "Books",
+    "Settings",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +40,7 @@ class MainScreen extends StatelessWidget {
             type: BottomNavigationBarType.fixed,
             currentIndex: tabsRouter.activeIndex,
             onTap: (value) {
+              AnalyticsEngine.clickedTabOfBottomNavBar(pageNames[value]);
               tabsRouter.setActiveIndex(value);
             },
             items: <BottomNavigationBarItem>[

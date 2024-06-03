@@ -52,7 +52,7 @@ class BooksPage extends StatelessWidget {
               ),
             ),
           ),
-          ListOfItems(books: books, name: translation(context).books),
+          ListOfItems(fetchName: "Books", name: translation(context).books),
         ],
       ),
     );

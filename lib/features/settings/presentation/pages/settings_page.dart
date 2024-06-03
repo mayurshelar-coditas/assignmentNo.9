@@ -1,9 +1,12 @@
 import 'package:assignment9/core/language_model/language_constants.dart';
+import 'package:assignment9/core/routes/app_router.gr.dart';
 import 'package:assignment9/core/theme/app_pallete.dart';
 import 'package:assignment9/main.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 @RoutePage()
 class SettingsPage extends StatefulWidget {
@@ -16,10 +19,16 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   String? _selectedLanguage;
 
+  late SharedPreferences pref;
   @override
   void initState() {
     super.initState();
     _loadSelectedLanguage();
+    _loadSharedPreferences();
+  }
+
+  Future<void> _loadSharedPreferences() async {
+    pref = await SharedPreferences.getInstance();
   }
 
   Future<void> _loadSelectedLanguage() async {
@@ -147,7 +156,15 @@ class _SettingsPageState extends State<SettingsPage> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 14),
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        pref.setBool('isLoggedIn', false);
+                        await FirebaseAuth.instance.signOut();
+                        context.router.replaceAll(
+                          const [
+                            LoginRoute(),
+                          ],
+                        );
+                      },
                       child: Text(
                         translation(context).logout,
                         style: GoogleFonts.heebo(

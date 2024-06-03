@@ -52,7 +52,7 @@ class AuthorsPage extends StatelessWidget {
               ),
             ),
           ),
-          ListOfItems(books: authors, name: translation(context).authors),
+          ListOfItems(name: translation(context).authors, fetchName: "Authors",),
         ],
       ),
     );

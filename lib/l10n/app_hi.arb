@@ -35,5 +35,6 @@
   "skip":"स्किप",
   "next":"अगला",
   "back":"पीछे", 
-  "language":"भाषा"
+  "language":"भाषा", 
+  "description": "विवरण"
 }

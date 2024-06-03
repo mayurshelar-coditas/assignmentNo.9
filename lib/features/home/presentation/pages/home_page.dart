@@ -61,7 +61,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
-          ListOfItems(books: books, name: translation(context).books),
+          ListOfItems(fetchName: "Books", name: translation(context).books),
           const SizedBox(
             height: 38,
           ),
@@ -78,7 +78,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
-          ListOfItems(books: authors, name: translation(context).authors),
+          ListOfItems(fetchName: "Authors", name: translation(context).authors),
         ],
       ),
     );

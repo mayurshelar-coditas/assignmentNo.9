@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 @RoutePage()
 class ItemDetails extends StatelessWidget {
   const ItemDetails(
-      {super.key, required this.itemIndex, required this.itemName});
+      {super.key, required this.description, required this.name,});
 
-  final int itemIndex;
-  final String itemName;
+  final String description, name;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +17,7 @@ class ItemDetails extends StatelessWidget {
         title: Align(
           alignment: Alignment.centerLeft,
           child: Text(
-            '$itemName ${itemIndex + 1}',
+            name,
             style: const TextStyle(
               fontSize: 20,
               color: Colors.black,
@@ -38,7 +37,7 @@ class ItemDetails extends StatelessWidget {
               height: 40,
             ),
             Text(
-              '$itemName ${itemIndex + 1} Description',
+              description,
               style: const TextStyle(
                 fontSize: 20,
                 color: Colors.black,

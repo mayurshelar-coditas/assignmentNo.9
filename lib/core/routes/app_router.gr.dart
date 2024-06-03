@@ -90,8 +90,8 @@ abstract class $AppRouter extends _i17.RootStackRouter {
         routeData: routeData,
         child: _i7.ItemDetails(
           key: args.key,
-          itemIndex: args.itemIndex,
-          itemName: args.itemName,
+          description: args.description,
+          name: args.name,
         ),
       );
     },
@@ -241,15 +241,15 @@ class HomeRouteNavigation extends _i17.PageRouteInfo<void> {
 class ItemDetails extends _i17.PageRouteInfo<ItemDetailsArgs> {
   ItemDetails({
     _i18.Key? key,
-    required int itemIndex,
-    required String itemName,
+    required String description,
+    required String name,
     List<_i17.PageRouteInfo>? children,
   }) : super(
           ItemDetails.name,
           args: ItemDetailsArgs(
             key: key,
-            itemIndex: itemIndex,
-            itemName: itemName,
+            description: description,
+            name: name,
           ),
           initialChildren: children,
         );
@@ -263,19 +263,19 @@ class ItemDetails extends _i17.PageRouteInfo<ItemDetailsArgs> {
 class ItemDetailsArgs {
   const ItemDetailsArgs({
     this.key,
-    required this.itemIndex,
-    required this.itemName,
+    required this.description,
+    required this.name,
   });
 
   final _i18.Key? key;
 
-  final int itemIndex;
+  final String description;
 
-  final String itemName;
+  final String name;
 
   @override
   String toString() {
-    return 'ItemDetailsArgs{key: $key, itemIndex: $itemIndex, itemName: $itemName}';
+    return 'ItemDetailsArgs{key: $key, description: $description, name: $name}';
   }
 }
 

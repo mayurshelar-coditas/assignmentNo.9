@@ -12,7 +12,7 @@
   "enterFamilyName": "आडनाव प्रविष्ट करा",
   "signup": "साइन अप करा",
   "home": "मुखपृष्ठ",
-  "books": "पुस्तकें",
+  "books": "पुस्तके",
   "bookOne": "पुस्तक एक",
   "bookTwo": "पुस्तक दो",
   "bookThree": "पुस्तक तीन",
@@ -27,7 +27,7 @@
   "three": "तीन",
   "four": "चार",
   "settings": "समायोजन",
-  "english": "अंग्रेज़ी",
+  "english": "इंग्रजी",
   "hindi": "हिंदी",
   "marathi": "मराठी",
   "arabic": "अरबी",
@@ -35,6 +35,6 @@
   "skip":"स्किप",
   "next":"पुढे",
   "back":"मागे", 
-  "language":"भाषा"
-
+  "language":"भाषा", 
+  "description": "वर्णन"
 }

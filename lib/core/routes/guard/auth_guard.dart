@@ -10,8 +10,6 @@ class AuthGuard extends AutoRouteGuard {
     final hasLoggedIn = pref.getBool('isLoggedIn') ?? false;
     final hasOnboarded = pref.getBool('onBoardedOnce') ?? false;
 
-    print(hasOnboarded);
-
     if (hasLoggedIn == true) {
       resolver.next(true);
     } else if (hasOnboarded == false) {

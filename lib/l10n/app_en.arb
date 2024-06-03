@@ -35,5 +35,6 @@
   "skip":"Skip",
   "next":"Next",
   "back":"Back", 
-  "language":"Language"
+  "language":"Language",
+  "description": "Description"
 }

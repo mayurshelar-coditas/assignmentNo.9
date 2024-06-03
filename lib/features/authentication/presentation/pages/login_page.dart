@@ -1,7 +1,11 @@
+import 'package:assignment9/core/analytics_engine.dart';
+import 'package:assignment9/core/dependency_injection/di_container.dart';
 import 'package:assignment9/core/language_model/language_constants.dart';
 import 'package:assignment9/core/routes/app_router.gr.dart';
 import 'package:assignment9/core/theme/app_pallete.dart';
 import 'package:assignment9/core/theme/fonts.dart';
+import 'package:assignment9/features/authentication/data/models/user_model.dart';
+import 'package:assignment9/features/authentication/domain/usecases/sign_in_user.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,13 +20,14 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final formKey = GlobalKey<FormState>();
-  late String email;
-  late String fullName;
-  late String password;
+
   TextStyle heebo = Fonts.heebo(14, FontWeight.w500);
   TextStyle hintTextStyle =
       Fonts.heeboWithColor(14, FontWeight.w500, AppPallete.hintTextColor);
   late SharedPreferences pref;
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   void initState() {
@@ -32,6 +37,13 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<void> _loadSharedPreferences() async {
     pref = await SharedPreferences.getInstance();
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -58,6 +70,7 @@ class _LoginPageState extends State<LoginPage> {
               Text(translation(context).userName, style: heebo),
               const SizedBox(height: 4),
               TextFormField(
+                controller: emailController,
                 key: const ValueKey('username'),
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -74,14 +87,12 @@ class _LoginPageState extends State<LoginPage> {
                     borderRadius: BorderRadius.all(Radius.circular(8)),
                   ),
                 ),
-                onSaved: (value) {
-                  fullName = value!;
-                },
               ),
               const SizedBox(height: 20),
               Text(translation(context).password, style: heebo),
               const SizedBox(height: 4),
               TextFormField(
+                controller: passwordController,
                 key: const ValueKey('password'),
                 obscureText: true,
                 validator: (value) {
@@ -101,9 +112,6 @@ class _LoginPageState extends State<LoginPage> {
                     borderRadius: BorderRadius.all(Radius.circular(8)),
                   ),
                 ),
-                onSaved: (value) {
-                  password = value!;
-                },
               ),
               const SizedBox(height: 36),
               Center(
@@ -111,8 +119,28 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () async {
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
-                      await pref.setBool('isLoggedIn', true);
-                      context.router.replace(const MainRoute());
+
+                      UserModel user = UserModel(
+                          name: emailController.text,
+                          password: passwordController.text,
+                          email: emailController.text);
+                      String response = await locator<SignInUser>().call(user);
+                      if (response == "Success") {
+                        await pref.setBool('isLoggedIn', true);
+                        AnalyticsEngine.userLogsIn("email");
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(response),
+                          ),
+                        );
+                        context.router.replace(const MainRoute());
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(response),
+                          ),
+                        );
+                      }
                     }
                   },
                   style: FilledButton.styleFrom(

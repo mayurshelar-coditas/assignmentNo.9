@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "977154933011",
+    "project_id": "assignment10-b63a2",
+    "storage_bucket": "assignment10-b63a2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977154933011:android:0507baa469a6e1bbeddae6",
+        "android_client_info": {
+          "package_name": "com.example.assignment9"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDf6ONIhZ6VocL_yUrUwktegCal3c75awE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977154933011:android:46b5183c36147593eddae6",
+        "android_client_info": {
+          "package_name": "com.mshel.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDf6ONIhZ6VocL_yUrUwktegCal3c75awE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

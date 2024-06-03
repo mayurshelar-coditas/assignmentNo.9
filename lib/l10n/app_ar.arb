@@ -35,5 +35,6 @@
   "skip":"يتخطى",
   "next":"التالي",
   "back":"خلف", 
-  "language":"لغة"
+  "language":"لغة", 
+  "description": "وصف"
 }
